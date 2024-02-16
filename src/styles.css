@@ -1,11 +1,11 @@
 * {
-    margin: 0;
-    padding: 0;
+    /* margin: 0;
+    padding: 0; */
     box-sizing: border-box;
 }
 
 .nav {
-    background: black;
+    background: rgb(50, 194, 21);
     font-family: sans-serif;
     display: flex;
     justify-content: space-between;
@@ -24,7 +24,7 @@
 }
 
 .site-title {
-    color: gold;
+    color: rgb(0, 26, 255);
     font-size: 2rem;
 }
 
@@ -54,17 +54,17 @@
 }
 
 
-body {
-    min-height: 100vh;
+.bodys {
     display: flex;
     flex-direction: column;
+    min-height: 100vh;
 }
 
-.page-container {
+/* .container {
     flex: 1;
     display: flex;
     flex-direction: column;
-}
+} */
 
 .product-container {
     width: 100%;
@@ -93,10 +93,7 @@ body {
     max-width: 100%;
 }
 
-/* .container .box .content .img-box img {
-   width: 150px;
-   height: 150px;
-} */
+
 
 .product-container .box .content .detail .info {
     display: flex;
@@ -148,52 +145,15 @@ body {
 
 
 footer {
-    margin-top: auto;
-    /* Push the footer to the bottom */
+    /* margin-top: auto; */
     background-color: #333;
     color: #fff;
-    padding: 10px 0 0 0;
+    padding: 10px 10px;
     text-align: center;
-}
-
-#filter-buttons button {
-    border-radius: 3px;
-    background: #fff;
-    border-color: transparent;
-}
-
-#filter-buttons button:hover {
-    background: #ddd;
-}
-
-#filter-buttons button.active {
-    color: #fff;
-    background: #6c757d;
-}
-
-#filterable-cards .card {
-    width: 15rem;
-    border: 2px solid transparent;
-}
-
-#filterable-cards .card.hide {
-    display: none;
-
-
 }
 
 
 .border-right {
     border: 1px solid #000;
-    /* You can adjust the border style as needed */
-}
 
-@media (max-width: 600px) {
-    #filterable-cards {
-        justify-content: center;
-    }
-
-    #filterable-cards .card {
-        width: calc(100% / 2 - 10px);
-    }
 }

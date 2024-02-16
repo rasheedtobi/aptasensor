@@ -10,6 +10,8 @@ const Product = () => {
   const [sortOrder, setSortOrder] = useState("asc"); 
   const [categoryFilter, setCategoryFilter] = useState(null);
   const [flaggedFilter, setFlaggedFilter] = useState(false);
+// Clear local storage
+
 
   useEffect(() => {
     const storedFlaggedProducts = JSON.parse(localStorage.getItem("flaggedProducts")) || [];
