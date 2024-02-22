@@ -193,9 +193,6 @@ router.get('/favorites', authenticateUser, async (req, res) => {
 });
 
 
-//UserRoutes.js
-
-// ... (previous code)
 
 // Update a product in the user's cart
 router.patch('/cart/update/:productId', authenticateUser, async (req, res) => {
@@ -247,7 +244,23 @@ router.patch('/favorites/update/:productId', authenticateUser, async (req, res) 
   }
 });
 
-// ... (remaining code)
 
+
+
+
+router.get('/username', authenticateUser, async (req, res) => {
+  try {
+    const userId = req.user.userId; // Assuming userId is available in the request object
+    const user = await User.findById(userId);
+    if (!user) {
+      return res.status(404).json({ error: 'User not found' });
+    }
+    const username = user.username;
+    res.json({ username });
+  } catch (error) {
+    console.error('Error finding user by ID:', error);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+});
 
 module.exports = router;
