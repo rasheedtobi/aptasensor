@@ -1,0 +1,200 @@
+* {
+
+    box-sizing: border-box;
+}
+
+
+/* .main {
+    flex: 1;
+  
+    padding: 20px;
+} */
+
+.nav {
+    background: rgb(8, 8, 8);
+    font-family: sans-serif;
+    display: flex;
+    justify-content: space-between;
+    align-items: stretch;
+    gap: 2rem;
+    padding: 0 1rem;
+}
+
+.nav ul {
+    padding: 0;
+    color: aliceblue;
+    margin: 0;
+    list-style: none;
+
+    display: flex;
+    gap: 1rem
+}
+
+.site-title {
+    color: rgb(0, 26, 255);
+    font-size: 2rem;
+}
+
+.nav ul li a {
+    color: aliceblue
+}
+
+.nav a {
+    display: flex;
+    height: 100%;
+    text-decoration: none;
+    align-items: center;
+    padding: 0.25re;
+    margin-top: 10px;
+}
+
+.nav ul li.active {
+    background-color: rosybrown;
+}
+
+.nav li:hover {
+    background-color: red;
+    /* color: red; */
+}
+
+.nav a span {
+    color: red
+}
+
+.nav ul li ul.dropdown {
+    display: none;
+    width: auto;
+    z-index: 999;
+    position: absolute;
+    background-color: #333;
+}
+
+
+.nav ul li:hover>.dropdown {
+    display: block;
+}
+
+.nav ul li ul.dropdown li {
+    padding: 10px;
+}
+
+
+
+
+
+.bodys {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/* .container {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+} */
+
+
+
+.product-container {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    margin-top: 30px;
+    padding: 10px 20px;
+
+}
+
+.product-container .box {
+    width: 280px;
+    height: 400px;
+    overflow: hidden;
+    margin-top: 20px;
+    background: #e8e8e8;
+    padding: 10px 20px;
+    margin-left: 20px;
+    cursor: pointer;
+
+}
+
+.product-container .box .content {
+    align-items: center;
+    max-width: 100%;
+}
+
+
+
+.product-container .box .content .detail .info {
+    display: flex;
+    justify-content: space-between;
+
+}
+
+.product-container .box .content .detail .info h3 {
+    color: maroon;
+    font-weight: 200;
+}
+
+.product-container .box .content .detail button {
+    padding: 10px 20px;
+    color: bisque;
+    border: none;
+    outline: none;
+    background: green;
+    cursor: grab;
+    margin: 5px;
+}
+
+.product-container .box .content .detail .buttons button.fav {
+    background-color: red;
+}
+
+.detail-container {
+    margin: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.sorting-filtering {
+    margin: 50px 20px;
+}
+
+
+.sorting-filtering {
+    display: flex;
+    gap: 2rem;
+}
+
+.content-container {
+    width: 50%;
+    margin: 0 auto;
+    /* Centers the content horizontally */
+}
+
+
+
+
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    min-height: 200vh;
+    /* Set the minimum height of the body to 100% of the viewport height */
+}
+
+footer {
+    width: 100%;
+    background-color: #333;
+    color: #fff;
+    padding: 10px 10px;
+    text-align: center;
+}
+
+.border-right {
+    border: 1px solid #000;
+
+}

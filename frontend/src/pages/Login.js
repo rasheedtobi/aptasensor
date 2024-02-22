@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
-function Login() {
+function Login({ setIsLoggedIn }) { // Receive setIsLoggedIn prop from AuthContainer
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
@@ -11,19 +11,23 @@ function Login() {
     event.preventDefault();
     try {
       const response = await axios.post('http://127.0.0.1:4000/users/login', { email, password });
-      console.log('Login successful:', response.data);
+      alert("login successful");
       navigate('/');
+    //   console.log('Login successful:');
+    //   setIsLoggedIn(true); // Update isLoggedIn state in AuthContainer
+      
+    //   return;
     } catch (error) {
-      alert("wrong email or password")
+      alert("wrong email or password");
       console.error('Login failed:', error.response.data);
     }
   };
 
   return (
-    <div>
-      <h2>Login</h2>
+    <div className="content-container">
+      <h2 className='m-3'>Login</h2>
       <form onSubmit={handleSubmit}>
-        <div className="mb-3">
+        <div className="m-3">
           <label htmlFor="email" className="form-label">Email</label>
           <input 
             type="email" 
@@ -35,7 +39,7 @@ function Login() {
             onChange={(e) => setEmail(e.target.value)} 
           />
         </div>
-        <div className="mb-3">
+        <div className="m-3">
           <label htmlFor="password" className="form-label">Password</label>
           <input 
             type="password" 
@@ -47,7 +51,7 @@ function Login() {
             onChange={(e) => setPassword(e.target.value)} 
           />
         </div>
-        <button type="submit" className="btn btn-primary">Login</button>
+        <button type="submit" className="btn btn-primary m-3">Login</button>
         <Link to="/register" className="btn btn-primary p-10">Sign Up</Link>
       </form>
     </div>

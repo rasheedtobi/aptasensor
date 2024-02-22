@@ -1,17 +1,20 @@
 * {
-    /* margin: 0;
-    padding: 0; */
     box-sizing: border-box;
 }
 
+.main {
+    flex: 1;
+    padding: 20px;
+}
+
 .nav {
-    background: rgb(50, 194, 21);
+    background: rgb(8, 8, 8);
     font-family: sans-serif;
     display: flex;
     justify-content: space-between;
-    align-items: stretch;
-    gap: 2rem;
+    align-items: center;
     padding: 0 1rem;
+    text-decoration: none;
 }
 
 .nav ul {
@@ -20,7 +23,11 @@
     margin: 0;
     list-style: none;
     display: flex;
-    gap: 1rem
+    gap: 1rem;
+}
+
+.nav a {
+    text-decoration: none;
 }
 
 .site-title {
@@ -29,15 +36,16 @@
 }
 
 .nav ul li a {
-    color: aliceblue
+    color: aliceblue;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
 }
 
-.nav a {
-    display: flex;
-    height: 100%;
-    text-decoration: none;
-    align-items: center;
-    padding: 0.25rem
+.nav a span {
+    color: red;
+    margin-left: 5px;
+    /* Adjust the spacing between icon and text */
 }
 
 .nav ul li.active {
@@ -49,22 +57,21 @@
     color: red;
 }
 
-.nav a span {
-    color: red
+.dropdown {
+    display: none;
+    position: absolute;
+    background-color: #333;
+    min-width: 100px;
+    z-index: 1;
 }
 
-
-.bodys {
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
+.nav ul li:hover>.dropdown {
+    display: block;
 }
 
-/* .container {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-} */
+.nav ul li ul.dropdown li {
+    padding: 10px;
+}
 
 .product-container {
     width: 100%;
@@ -73,7 +80,6 @@
     justify-content: space-evenly;
     margin-top: 30px;
     padding: 10px 20px;
-
 }
 
 .product-container .box {
@@ -85,20 +91,6 @@
     padding: 10px 20px;
     margin-left: 20px;
     cursor: pointer;
-
-}
-
-.product-container .box .content {
-    align-items: center;
-    max-width: 100%;
-}
-
-
-
-.product-container .box .content .detail .info {
-    display: flex;
-    justify-content: space-between;
-
 }
 
 .product-container .box .content .detail .info h3 {
@@ -128,32 +120,55 @@
 
 .sorting-filtering {
     margin: 50px 20px;
-}
-
-
-.sorting-filtering {
     display: flex;
     gap: 2rem;
 }
 
+.content-container {
+    width: 50%;
+    margin: 0 auto;
+}
 
-
-
-
-
-
-
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    min-height: 200vh;
+}
 
 footer {
-    /* margin-top: auto; */
+    width: 100%;
     background-color: #333;
     color: #fff;
     padding: 10px 10px;
     text-align: center;
 }
 
-
 .border-right {
     border: 1px solid #000;
+}
 
+.add {
+    background-color: #4caf50;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+}
+
+.fav {
+    /* Add your existing styles for the favorite button */
+}
+
+.fav i {
+    /* Customize the size or color of the heart icon */
+    font-size: 20px;
+    color: red;
 }

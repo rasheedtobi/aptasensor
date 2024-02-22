@@ -88,4 +88,166 @@ router.put('/:userId/grantAdmin', authenticateUser, checkAdmin, async (req, res)
   }
 });
 
+
+
+// Add a new route to get user's cart and favorites
+router.get('/profile', authenticateUser, async (req, res) => {
+  try {
+    const user = req.user;
+    res.json({
+      cart: user.cart,
+      favorites: user.favorites,
+    });
+  } catch (error) {
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+});
+
+// Add a route to add a product to the user's cart
+router.post('/cart/add/:productId', authenticateUser, async (req, res) => {
+  try {
+    const productId = req.params.productId;
+    const user = req.user;
+
+    // Check if the product is already in the cart
+    if (!user.cart.includes(productId)) {
+      user.cart.push(productId);
+      await user.save();
+      res.json({ message: 'Product added to cart successfully' });
+    } else {
+      res.status(400).json({ error: 'Product is already in the cart' });
+    }
+  } catch (error) {
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+});
+
+// Add a route to remove a product from the user's cart
+router.delete('/cart/remove/:productId', authenticateUser, async (req, res) => {
+  try {
+    const productId = req.params.productId;
+    const user = req.user;
+
+    // Check if the product is in the cart
+    if (user.cart.includes(productId)) {
+      user.cart = user.cart.filter((id) => id !== productId);
+      await user.save();
+      res.json({ message: 'Product removed from cart successfully' });
+    } else {
+      res.status(400).json({ error: 'Product is not in the cart' });
+    }
+  } catch (error) {
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+});
+
+
+// Add a route to add a product to the user's favorites
+router.post('/favorites/add/:productId', authenticateUser, async (req, res) => {
+  try {
+    const productId = req.params.productId;
+    const user = req.user;
+
+    // Check if the product is already in the favorites
+    if (!user.favorites.includes(productId)) {
+      user.favorites.push(productId);
+      await user.save();
+      res.json({ message: 'Product added to favorites successfully' });
+    } else {
+      res.status(400).json({ error: 'Product is already in favorites' });
+    }
+  } catch (error) {
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+});
+
+// Add a route to remove a product from the user's favorites
+router.delete('/favorites/remove/:productId', authenticateUser, async (req, res) => {
+  try {
+    const productId = req.params.productId;
+    const user = req.user;
+
+    // Check if the product is in the favorites
+    if (user.favorites.includes(productId)) {
+      user.favorites = user.favorites.filter((id) => id !== productId);
+      await user.save();
+      res.json({ message: 'Product removed from favorites successfully' });
+    } else {
+      res.status(400).json({ error: 'Product is not in favorites' });
+    }
+  } catch (error) {
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+});
+
+
+router.get('/favorites', authenticateUser, async (req, res) => {
+  try {
+    const user = req.user;
+    const favoriteProducts = await Product.find({ _id: { $in: user.favorites } });
+
+    res.json({ favorites: favoriteProducts });
+  } catch (error) {
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+});
+
+
+//UserRoutes.js
+
+// ... (previous code)
+
+// Update a product in the user's cart
+router.patch('/cart/update/:productId', authenticateUser, async (req, res) => {
+  try {
+    const productId = req.params.productId;
+    const user = req.user;
+
+    // Check if the product is in the cart
+    if (user.cart.includes(productId)) {
+      // Assuming you have an update object in the request body, e.g., { quantity: 3 }
+      const updateObject = req.body;
+
+      // Update the product in the user's cart (for example, updating quantity)
+      // You can customize this based on your application logic
+      // Example: user.cart.find(product => product.productId === productId).quantity = updateObject.quantity;
+
+      await user.save();
+      res.json({ message: 'Product in cart updated successfully' });
+    } else {
+      res.status(400).json({ error: 'Product is not in the cart' });
+    }
+  } catch (error) {
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+});
+
+// Update a product in the user's favorites
+router.patch('/favorites/update/:productId', authenticateUser, async (req, res) => {
+  try {
+    const productId = req.params.productId;
+    const user = req.user;
+
+    // Check if the product is in the favorites
+    if (user.favorites.includes(productId)) {
+      // Assuming you have an update object in the request body, e.g., { rating: 5 }
+      const updateObject = req.body;
+
+      // Update the product in the user's favorites (for example, updating rating)
+      // You can customize this based on your application logic
+      // Example: user.favorites.find(product => product.productId === productId).rating = updateObject.rating;
+
+      await user.save();
+      res.json({ message: 'Product in favorites updated successfully' });
+    } else {
+      res.status(400).json({ error: 'Product is not in favorites' });
+    }
+  } catch (error) {
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+});
+
+// ... (remaining code)
+
+
 module.exports = router;

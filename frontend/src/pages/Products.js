@@ -2,6 +2,8 @@
 import React, { useState, useEffect } from "react";
 import ProductData from "../ProductData";
 import '../styles.css'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faUser, faHeart, faShoppingCart } from '@fortawesome/free-solid-svg-icons';
 
 const Product = () => {
   const [detail, setDetail] = useState([]);
@@ -47,7 +49,12 @@ const Product = () => {
     setDetail([{...ProductData.find(product => product.id === productId), isFlagged: true}]);
   };
 
-  
+  const addProduct = (productId) => {
+  // Implement your logic for adding the product to the cart or any other desired action
+  // For example, you can maintain a state for the added products
+  // and update it when the "Add" button is clicked
+  console.log('Added')
+};
 
   return (
     <>
@@ -108,24 +115,28 @@ const Product = () => {
 
       <div className="product-container">
         {filteredProducts.map((product) => (
-          <div key={product.id} className="box">
-            <div className="content">
-              <div className="img-box">
-                <img src={product.url} alt={product.name}></img>
-                <div className="detail">
-                  <div className="info">
-                    <h3>{product.name}</h3>
-                    <p> €{product.price}</p>
-                  </div>
-                  <div className="buttons">
-                    <button onClick={() => detailPage(product)}>View</button>
-                    <button className = "fav" onClick={() => flagProduct(product.id)}>Mark as Favorite</button>
-                  </div>
-                </div>
-              </div>
-            </div>
+  <div key={product.id} className="box">
+    <div className="content">
+      <div className="img-box">
+        <img src={product.url} alt={product.name}></img>
+        <div className="detail">
+          <div className="info">
+            <h3>{product.name}</h3>
+            <p> €{product.price}</p>
           </div>
-        ))}
+          <div className="buttons">
+  <button onClick={() => detailPage(product)}>View</button>
+  <button className="fav" onClick={() => flagProduct(product.id)}>
+    <FontAwesomeIcon icon={faHeart} /> {/* Render the FontAwesome icon */}
+</button>
+  <button className="add" onClick={() => addProduct(product.id)}>Add</button>
+</div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+))}
       </div>
     </>
   );

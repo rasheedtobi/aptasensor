@@ -12,7 +12,9 @@ import Footer from './pages/Footer';
 
 function App() {
   return (
-    <div className='bodys'>
+    <div className=''>
+     <div className="app-wrapper">
+      <div className="content-wrapper">
       <Navbar />
       <div>
         <Routes>
@@ -22,11 +24,13 @@ function App() {
           <Route path='/contact' element={<ContactUs />} />
           <Route path='/login' element={<Login />} />
           <Route path='/register' element={<Register />} />
-       
         </Routes>
         <Footer />
       </div>
     </div>
+    </div>
+    </div>
+    
   );
 }
 

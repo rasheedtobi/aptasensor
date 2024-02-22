@@ -20,7 +20,7 @@ function Register() {
   };
 
   return (
-    <div>
+    <div class="content-container">
       <h2>Register</h2>
       <form onSubmit={handleSubmit}>
         <div className="mb-3">
@@ -60,7 +60,7 @@ function Register() {
           />
         </div>
         <button type="submit" className="btn btn-primary">Register</button>
-        <Link to="/login" className="btn btn-primary p-10">Login</Link>
+        <Link to="/login" className="btn btn-primary p-10 m-3">Login</Link>
       </form>
     </div>
   );
