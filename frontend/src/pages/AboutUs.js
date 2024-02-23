@@ -4,8 +4,10 @@ function AboutUs() {
   return (
     <section className="about-us">
       <div className="container justify-content-center mt-5">
-        <h2>About Us</h2>
-        <p>
+        {/* <h2>About Us</h2> */}
+        <img src='img\aboutus.jpg' className='contimg mb-10'/>
+
+        <p className='mt-10'>
           Welcome to Aptasensor Engineer, your source for mastering the art of
           aptamer-based biosensor design. We are a team of experts in the field
           of biotechnology and diagnostics, dedicated to sharing our knowledge

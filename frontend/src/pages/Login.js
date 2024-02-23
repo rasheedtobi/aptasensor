@@ -1,8 +1,9 @@
+
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
-function Login({ setIsLoggedIn }) { // Receive setIsLoggedIn prop from AuthContainer
+function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
@@ -11,12 +12,15 @@ function Login({ setIsLoggedIn }) { // Receive setIsLoggedIn prop from AuthConta
     event.preventDefault();
     try {
       const response = await axios.post('http://127.0.0.1:4000/users/login', { email, password });
-      alert("login successful");
+      const { user, accessToken, refreshToken } = response.data;
+
+     
+      localStorage.setItem('user', JSON.stringify(user));
+      localStorage.setItem('accessToken', accessToken);
+      localStorage.setItem('refreshToken', refreshToken);
       navigate('/');
-    //   console.log('Login successful:');
-    //   setIsLoggedIn(true); // Update isLoggedIn state in AuthContainer
-      
-    //   return;
+      alert("login successful");
+      window.location.reload(false);
     } catch (error) {
       alert("wrong email or password");
       console.error('Login failed:', error.response.data);

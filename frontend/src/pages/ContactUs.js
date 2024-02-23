@@ -4,6 +4,9 @@ function ContactUs() {
   return (
     <div className="container mt-5">
       <h2>Contact Us</h2>
+      <img src='\img\contactus.png' className='contimg'></img>
+
+      
       <form>
         <div className="mb-3">
           <label htmlFor="name" className="form-label">

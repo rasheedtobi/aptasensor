@@ -18,11 +18,10 @@ router.post('/register', async (req, res) => {
 
 router.post('/login', async (req, res) => {
   try {
-    // res.send("ok")
-    const { email, password } = req.body;
-    const user = await User.findOne({ email });
-    if (!user) {
-      return res.status(404).json({ error: 'User not found' });
+      const { email, password } = req.body;
+      const user = await User.findOne({ email });
+      if (!user) {
+        return res.status(404).json({ error: 'User not found' });
     }
     // Compare the provided password with the hashed password in the database
     const passwordMatch = await bcrypt.compare(password, user.password);
@@ -35,7 +34,7 @@ router.post('/login', async (req, res) => {
     // Save refresh token to the database
     user.refreshToken = refreshToken;
     await user.save();
-    res.json({ accessToken, refreshToken });
+    res.json({ user, accessToken, refreshToken });
     // res.json(user)
   } catch (error) {
     res.status(500).json({ error: 'Could not log in' });

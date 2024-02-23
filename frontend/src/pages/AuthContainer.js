@@ -7,7 +7,7 @@ function AuthContainer() {
 
   const handleLogout = () => {
     setIsLoggedIn(false);
-    // Additional logout logic here
+    
   };
 
   return (

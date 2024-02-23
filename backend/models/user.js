@@ -15,7 +15,7 @@ const userSchema = new mongoose.Schema({
   orderedItems: [{
     product: { type: mongoose.Schema.Types.ObjectId, ref: 'Product' },
     quantity: Number,
-    // Additional fields like shipping information, order status, etc., can be added here
+   
   }]
 });
 

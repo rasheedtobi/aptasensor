@@ -1,16 +1,23 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
 import { Link } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUser, faHeart, faShoppingCart } from '@fortawesome/free-solid-svg-icons';
 
-function Navbar({ isLoggedIn, handleLogout }) {
-  const [showDropdown, setShowDropdown] = useState(false); // State to control dropdown visibility
+function NavBar({ handleLogout }) {
+  const [user, setUser] = useState(null);
 
-  const handleUserIconClick = () => {
-    setShowDropdown(!showDropdown); // Toggle dropdown visibility
+  useEffect(() => {
+    // Retrieve user data from local storage on component mount
+    const userData = JSON.parse(localStorage.getItem('user'));
+    setUser(userData);
+  }, []);
+
+  // Function to handle logout and update user state
+  const handleLogoutClick = () => {
+    handleLogout();
+    setUser(null); // Clear user state on logout
   };
-let isAvail = true;
+
   return (
     <div className='nav'>
       <div className='navright'>
@@ -23,22 +30,15 @@ let isAvail = true;
         </ul>
       </div>
       <ul className='navright'>
-
         <li>
-          {isAvail && (
+          {user ? (
             <div>
-          <span>Username</span><button onClick={handleLogout} className='m-1'>Log out</button>  </div>)}</li>
-        <li className='loginout'>
-          {!isAvail && (
-          <div onMouseEnter={handleUserIconClick} onMouseLeave={handleUserIconClick}>
-            <FontAwesomeIcon icon={faUser} />
-            {showDropdown && (
-              <ul className="dropdown">
-                <li><Link to="/login">Login</Link></li>
-                <li><Link to="/register">Register</Link></li>
-              </ul>
-            )}
-          </div> )}
+              {user.username}
+              <button onClick={handleLogoutClick} className='m-1'>Log out</button>
+            </div>
+          ) : (
+            <DropdownMenu />
+          )}
         </li>
         <li>
           <Link to="/favorites">
@@ -63,4 +63,24 @@ function CustomLink({ to, children }) {
   );
 }
 
-export default Navbar;
+function DropdownMenu() {
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+
+  const toggleDropdown = () => {
+    setIsDropdownOpen(!isDropdownOpen);
+  };
+
+  return (
+    <div className="dropdown" onMouseEnter={toggleDropdown} onMouseLeave={toggleDropdown}>
+      <FontAwesomeIcon icon={faUser} />
+      {isDropdownOpen && (
+        <div className="dropdown-content">
+          <Link to="/login">Login</Link>
+          <Link to="/register">Register</Link>
+        </div>
+      )}
+    </div>
+  );
+}
+
+export default NavBar;
