@@ -26,12 +26,26 @@
     gap: 1rem;
 }
 
+.navright {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 3rem
+}
+
+.navleft {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 3rem
+}
+
 .nav a {
     text-decoration: none;
 }
 
 .site-title {
-    color: rgb(0, 26, 255);
+    color: rgb(255, 234, 0);
     font-size: 2rem;
 }
 
@@ -65,12 +79,24 @@
     z-index: 1;
 }
 
-.nav ul li:hover>.dropdown {
+.dropdown li {
     display: block;
+    /* position: absolute; */
+    background-color: #0c0c0c;
+    padding: 10px;
+
 }
 
-.nav ul li ul.dropdown li {
+
+.logoutbtn {
+    background: #e8e8e8;
+    color: black;
+    border: 2px solid #0c7c08;
     padding: 10px;
+    border-radius: 4px;
+    /* font-family: 'Poppins'; */
+    cursor: pointer;
+    font-size: 1em;
 }
 
 .product-container {
@@ -171,4 +197,16 @@ footer {
     /* Customize the size or color of the heart icon */
     font-size: 20px;
     color: rgb(38, 0, 255);
+}
+
+.loginout {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.navleft {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }

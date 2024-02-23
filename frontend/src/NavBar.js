@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUser, faHeart, faShoppingCart } from '@fortawesome/free-solid-svg-icons';
@@ -9,33 +10,35 @@ function Navbar({ isLoggedIn, handleLogout }) {
   const handleUserIconClick = () => {
     setShowDropdown(!showDropdown); // Toggle dropdown visibility
   };
-
+let isAvail = true;
   return (
     <div className='nav'>
-      <Link to='/' className='site-title'>Apta<span>Sensor</span></Link>
-      <ul>
-        <CustomLink to="/">Curriculum</CustomLink>
-        <CustomLink to="/products">Products</CustomLink>
-        <CustomLink to="/contact">Contact Us</CustomLink>
-        <CustomLink to="/about">About Us</CustomLink>
-        <li onClick={handleUserIconClick}>
-          <FontAwesomeIcon icon={faUser} />
-          {showDropdown && (
-            <ul className="dropdown">
-              {isLoggedIn ? (
-                <li onClick={handleLogout}>Logout</li>
-              ) : (
-                <>
-                  <li>
-                    <Link to="/login">Login</Link>
-                  </li>
-                  <li>
-                    <Link to="/register">Register</Link>
-                  </li>
-                </>
-              )}
-            </ul>
-          )}
+      <div className='navright'>
+        <Link to='/' className='site-title'>Apta</Link>
+        <ul>
+          <CustomLink to="/">Curriculum</CustomLink>
+          <CustomLink to="/products">Products</CustomLink>
+          <CustomLink to="/contact">Contact Us</CustomLink>
+          <CustomLink to="/about">About Us</CustomLink>
+        </ul>
+      </div>
+      <ul className='navright'>
+
+        <li>
+          {isAvail && (
+            <div>
+          <span>Username</span><button onClick={handleLogout} className='m-1'>Log out</button>  </div>)}</li>
+        <li className='loginout'>
+          {!isAvail && (
+          <div onMouseEnter={handleUserIconClick} onMouseLeave={handleUserIconClick}>
+            <FontAwesomeIcon icon={faUser} />
+            {showDropdown && (
+              <ul className="dropdown">
+                <li><Link to="/login">Login</Link></li>
+                <li><Link to="/register">Register</Link></li>
+              </ul>
+            )}
+          </div> )}
         </li>
         <li>
           <Link to="/favorites">
