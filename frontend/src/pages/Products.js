@@ -19,7 +19,7 @@ const Product = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    const userData = JSON.parse(localStorage.getItem('user'));
+    let userData = JSON.parse(localStorage.getItem('user'));
     setUser(userData);
   }, []);
 
@@ -102,11 +102,12 @@ const Product = () => {
 await axios.post(`http://localhost:4000/users/favorites/add/${productId}`, null, config);
 
       // Update the detail state if necessary
-      setDetail([{...products.find(product => product.id === productId), isFlagged: true}]);
+      // setDetail([{...products.find(product => product.id === productId), isFlagged: true}]);
 
       // Update user data in local storage
       const updatedUser = {...user, favorites: [...user.favorites, productId]};
       localStorage.setItem('user', JSON.stringify(updatedUser));
+      
       alert("Product favorited")
     } catch (error) {
       console.error('Error flagging product:', error);
