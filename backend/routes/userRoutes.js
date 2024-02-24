@@ -145,7 +145,7 @@ router.delete('/cart/remove/:productId', authenticateUser, async (req, res) => {
 router.post('/favorites/add/:productId', authenticateUser, async (req, res) => {
   try {
     const productId = req.params.productId;
-    const userId = req.user.userId; // Assuming userId holds the ObjectId of the user
+    const userId = req.user.userId; 
     
     // Check if the product is already in the favorites
     const user = await User.findById(userId);
@@ -170,7 +170,7 @@ router.post('/favorites/add/:productId', authenticateUser, async (req, res) => {
 router.delete('/favorites/remove/:productId', authenticateUser, async (req, res) => {
   try {
     const productId = req.params.productId;
-    const userId = req.user.userId; // Assuming userId holds the ObjectId of the user
+    const userId = req.user.userId; 
     
     // Find the user by userId
     const user = await User.findById(userId);
@@ -197,8 +197,8 @@ router.delete('/favorites/remove/:productId', authenticateUser, async (req, res)
 
 router.get('/favorites', authenticateUser, async (req, res) => {
   try {
-    const userId = req.user.userId; // Get the user's ID from the authenticated user object
-    const user = await User.findById(userId).populate('favorites'); // Populate the 'favorites' field to get the actual product documents
+    const userId = req.user.userId; 
+    const user = await User.findById(userId).populate('favorites'); 
     if (!user) {
       return res.status(404).json({ error: 'User not found' });
     }
@@ -219,7 +219,7 @@ router.patch('/cart/update/:productId', authenticateUser, async (req, res) => {
 
     // Check if the product is in the cart
     if (user.cart.includes(productId)) {
-      // Assuming you have an update object in the request body, e.g., { quantity: 3 }
+      
       const updateObject = req.body;
 
       // Update the product in the user's cart (for example, updating quantity)
@@ -244,7 +244,7 @@ router.patch('/favorites/update/:productId', authenticateUser, async (req, res) 
 
     // Check if the product is in the favorites
     if (user.favorites.includes(productId)) {
-      // Assuming you have an update object in the request body, e.g., { rating: 5 }
+      
       const updateObject = req.body;
 
       // Update the product in the user's favorites (for example, updating rating)
@@ -267,7 +267,7 @@ router.patch('/favorites/update/:productId', authenticateUser, async (req, res) 
 
 router.get('/username', authenticateUser, async (req, res) => {
   try {
-    const userId = req.user.userId; // Assuming userId is available in the request object
+    const userId = req.user.userId; 
     const user = await User.findById(userId);
     if (!user) {
       return res.status(404).json({ error: 'User not found' });

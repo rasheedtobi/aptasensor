@@ -8,6 +8,7 @@ import ContactUs from './pages/ContactUs';
 import Products from './pages/Products';
 import Login from './pages/Login';
 import Register from './pages/Register';
+import Favorite from './pages/Favorite';
 import Footer from './pages/Footer';
 import './styles.css';
 
@@ -36,6 +37,7 @@ function App() {
           <Route path='/contact' element={<ContactUs />} />
           <Route path='/login' element={<Login />} />
           <Route path='/register' element={<Register />} />
+          <Route path='/favorites' element={<Favorite />} />
         </Routes>
       </div>
       <Footer />
